@@ -1,4 +1,4 @@
-package one.ditialinnovation.personaapi.entity;
+package one.ditialinnovation.personapi.entity;
 
 import java.time.LocalDate;
 import java.util.List;

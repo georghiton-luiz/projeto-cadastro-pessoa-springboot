@@ -1,4 +1,4 @@
-package one.ditialinnovation.personaapi.enums;
+package one.ditialinnovation.personapi.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
