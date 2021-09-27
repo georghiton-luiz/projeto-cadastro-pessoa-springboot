@@ -4,8 +4,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import one.ditialinnovation.personapi.dto.request.PersonDTO;
 import one.ditialinnovation.personapi.dto.response.MessageResponseDTO;
@@ -61,4 +65,19 @@ public class PersonService {
     private Person verifyIfExists(Long id) throws PersonNotFoundException{
         return personRepository.findById(id).orElseThrow(() -> new PersonNotFoundException(id));
     }
+
+    public MessageResponseDTO updateById(Long id, PersonDTO personDTO) throws PersonNotFoundException{
+
+        verifyIfExists(id);
+
+        Person personToUpdate = personMapper.toModel(personDTO);
+
+        Person  updatePerson = personRepository.save(personToUpdate);
+        return MessageResponseDTO
+        .builder()
+        .message("Update person with ID " + updatePerson.getId())
+        .build();
+    }
+
+
 }
